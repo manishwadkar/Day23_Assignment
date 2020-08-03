@@ -3,11 +3,8 @@ public class EmpWageBuilder{
 
         public static final int isFullTime=1;
         public static final int isPartTime=2;
-        public static final int wagePerHour=20;
-        public static final int noOfWorkingDays=20;
-        public static final int maxHoursInMonth=50;
 
-        public static int computeEmpWage(){
+        public static int computeEmpWage(String company,int wagePerHour,int noOfWorkingDays,int maxHoursInMonth){
                 System.out.println("Welcome to Employee Wage Computation");
                 int empHours=0;
                 int totalEmpWage=0;
@@ -34,12 +31,14 @@ public class EmpWageBuilder{
                         System.out.println("Day: "+totalWorkingDays+"EmpHrs: "+empHours);
                 }
                 totalEmpWage=totalEmpHrs*wagePerHour;
-                System.out.println("Total Employee Wage: "+totalEmpWage);
+                System.out.println("Total Employee Wage for Company: "+company+" is: "+totalEmpWage);
                 return totalEmpWage;
         }
 
         public static void main(String args[]){
 
-                computeEmpWage();
+                computeEmpWage("Google",20,20,50);
+                computeEmpWage("Microsoft",50,15,30);
+                computeEmpWage("Facebook",10,4,20);
         }
 }
