@@ -4,14 +4,17 @@ public class EmpWageBuilder{
         public static final int isPartTime=2;
         public static final int wagePerHour=20;
         public static final int noOfWorkingDays=20;
+        public static final int maxHoursInMonth=50;
 
         public static void main(String args[]){
                 System.out.println("Welcome to Employee Wage Computation");
                 int empHours=0;
-                int empWage=0;
                 int totalEmpWage=0;
+                int totalEmpHrs=0;
+                int totalWorkingDays=0;
 
-                for(int i=0;i<noOfWorkingDays;i++){
+                while(totalEmpHrs<=maxHoursInMonth && totalWorkingDays<=noOfWorkingDays){
+                        totalWorkingDays++;
                         int empCheck=(int)Math.floor(Math.random() * 10) % 3;
                         System.out.println(empCheck);
 
@@ -26,10 +29,10 @@ public class EmpWageBuilder{
                         default:
                                 empHours=0;
                         }
-                        empWage=empHours*wagePerHour;
-                        System.out.println("Employee Wage: "+empWage);
-                        totalEmpWage+=empWage;
+                        totalEmpHrs+=empHours;
+                        System.out.println("Day: "+totalWorkingDays+"EmpHrs: "+empHours);
                 }
+                totalEmpWage=totalEmpHrs*wagePerHour;
                 System.out.println("Total Employee Wage: "+totalEmpWage);
         }
 }
