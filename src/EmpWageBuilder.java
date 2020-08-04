@@ -1,5 +1,7 @@
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class EmpWageBuilder implements EmpWageInterface {
 
@@ -7,11 +9,13 @@ public class EmpWageBuilder implements EmpWageInterface {
 	public static final int isPartTime = 2;
 
 	List<CompanyEmpWage> companyEmpWageList;
+	Map<String, Integer> companyTotalEmpWageMap;
 
 	int i = 0;
 
 	public EmpWageBuilder() {
 		companyEmpWageList = new ArrayList<CompanyEmpWage>();
+		companyTotalEmpWageMap = new HashMap<String, Integer>();
 	}
 
 	@Override
@@ -44,16 +48,23 @@ public class EmpWageBuilder implements EmpWageInterface {
 					empHours = 0;
 				}
 				totalEmpHrs += empHours;
-				 
+
 				companyEmpWage.setDailyWage(empHours * companyEmpWage.wagePerHour);
 				System.out.println("Day: " + totalWorkingDays + "EmpHrs: " + empHours);
-				System.out.println("DailyWage: "+ companyEmpWage.getDailyWage());
+				System.out.println("DailyWage: " + companyEmpWage.getDailyWage());
 			}
 			System.out.println("Total Emp hours: " + totalEmpHrs);
 			companyEmpWage.setTotalEmpWage(totalEmpHrs * companyEmpWage.wagePerHour);
-			System.out.println(companyEmpWage);
+			
+			System.out.println("Total Emp Wage: " + companyEmpWage.getTotalEmpWage());
+			companyTotalEmpWageMap.put(companyEmpWage.company, companyEmpWage.getTotalEmpWage());
 		}
 
+	}
+
+	@Override
+	public int getTotalEmpWage(String company) {
+		return companyTotalEmpWageMap.get(company);
 	}
 
 	@Override
@@ -71,6 +82,9 @@ public class EmpWageBuilder implements EmpWageInterface {
 		empWageBuilder.addCompanyWage("Microsoft", 50, 15, 30);
 
 		empWageBuilder.computeEmpWage();
+
+		System.out.println("Total Employee Wage for Google is: "+empWageBuilder.getTotalEmpWage("Google"));
+		System.out.println("Total Employee Wage for Microsoft is: "+empWageBuilder.getTotalEmpWage("Microsoft"));
 
 	}
 }
