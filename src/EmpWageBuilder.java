@@ -1,18 +1,17 @@
+import java.util.ArrayList;
+import java.util.List;
 
 public class EmpWageBuilder implements EmpWageInterface {
 
 	public static final int isFullTime = 1;
 	public static final int isPartTime = 2;
 
-	CompanyEmpWage companyEmpWageArray[];
-
-	int totalNumberOfCompanies = 0;
+	List<CompanyEmpWage> companyEmpWageList;
 
 	int i = 0;
 
-	public void setTotalNumberOfCompanies(int totalNumberOfCompanies) {
-		this.totalNumberOfCompanies = totalNumberOfCompanies;
-		companyEmpWageArray = new CompanyEmpWage[totalNumberOfCompanies];
+	public EmpWageBuilder() {
+		companyEmpWageList = new ArrayList<CompanyEmpWage>();
 	}
 
 	@Override
@@ -20,12 +19,12 @@ public class EmpWageBuilder implements EmpWageInterface {
 
 		System.out.println("Welcome to Employee Wage Computation");
 
-		for (int i = 0; i < companyEmpWageArray.length; i++) {
+		for (int i = 0; i < companyEmpWageList.size(); i++) {
 			int empHours = 0;
 			int totalEmpHrs = 0;
 			int totalWorkingDays = 0;
 
-			CompanyEmpWage companyEmpWage = companyEmpWageArray[i];
+			CompanyEmpWage companyEmpWage = companyEmpWageList.get(i);
 
 			while (totalEmpHrs <= companyEmpWage.maxHoursInMonth
 					&& totalWorkingDays <= companyEmpWage.noOfWorkingDays) {
@@ -57,14 +56,14 @@ public class EmpWageBuilder implements EmpWageInterface {
 	@Override
 	public void addCompanyWage(String company, int wagePerHour, int noOfWorkingDays, int maxHoursInMonth) {
 
-		companyEmpWageArray[i++] = new CompanyEmpWage(company, wagePerHour, noOfWorkingDays, maxHoursInMonth);
+		companyEmpWageList.add(new CompanyEmpWage(company, wagePerHour, noOfWorkingDays, maxHoursInMonth));
 
 	}
 
 	public static void main(String args[]) {
 
 		EmpWageBuilder empWageBuilder = new EmpWageBuilder();
-		empWageBuilder.setTotalNumberOfCompanies(2);
+
 		empWageBuilder.addCompanyWage("Google", 20, 20, 50);
 		empWageBuilder.addCompanyWage("Microsoft", 50, 15, 30);
 
