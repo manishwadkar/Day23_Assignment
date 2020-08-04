@@ -1,5 +1,5 @@
 
-public class EmpWageBuilder {
+public class EmpWageBuilder implements EmpWageInterface {
 
 	public static final int isFullTime = 1;
 	public static final int isPartTime = 2;
@@ -7,14 +7,15 @@ public class EmpWageBuilder {
 	CompanyEmpWage companyEmpWageArray[];
 
 	int totalNumberOfCompanies = 0;
-	
-	int i=0;
+
+	int i = 0;
 
 	public void setTotalNumberOfCompanies(int totalNumberOfCompanies) {
 		this.totalNumberOfCompanies = totalNumberOfCompanies;
 		companyEmpWageArray = new CompanyEmpWage[totalNumberOfCompanies];
 	}
 
+	@Override
 	public void computeEmpWage() {
 
 		System.out.println("Welcome to Employee Wage Computation");
@@ -46,15 +47,16 @@ public class EmpWageBuilder {
 				totalEmpHrs += empHours;
 				System.out.println("Day: " + totalWorkingDays + "EmpHrs: " + empHours);
 			}
-			System.out.println("Total Emp hours: "+totalEmpHrs);
+			System.out.println("Total Emp hours: " + totalEmpHrs);
 			companyEmpWage.setTotalEmpWage(totalEmpHrs * companyEmpWage.wagePerHour);
 			System.out.println(companyEmpWage);
 		}
 
 	}
 
+	@Override
 	public void addCompanyWage(String company, int wagePerHour, int noOfWorkingDays, int maxHoursInMonth) {
- 
+
 		companyEmpWageArray[i++] = new CompanyEmpWage(company, wagePerHour, noOfWorkingDays, maxHoursInMonth);
 
 	}
