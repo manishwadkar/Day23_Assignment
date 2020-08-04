@@ -6,6 +6,7 @@ public class CompanyEmpWage {
     public final int noOfWorkingDays;
     public final int maxHoursInMonth;
     private int totalEmpWage;
+    private int dailyWage;
     
     public CompanyEmpWage(String company,int wagePerHour,int noOfWorkingDays,int maxHoursInMonth) {
     	this.company=company;
@@ -21,4 +22,14 @@ public class CompanyEmpWage {
     public String toString() {
     	return "Total Employee Wage for Company: "+company+" is: "+totalEmpWage;
     }
+
+	public int getDailyWage() {
+		return dailyWage;
+	}
+
+	public void setDailyWage(int dailyWage) {
+		this.dailyWage = dailyWage;
+	}
+
+	
 }
